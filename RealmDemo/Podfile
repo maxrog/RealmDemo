@@ -1,0 +1,12 @@
+platform :ios, '10.0'
+
+target 'RealmDemo' do
+  use_frameworks!
+  pod 'RealmSwift'
+
+  target 'RealmDemoTests' do
+    inherit! :search_paths
+    # Pods needed for testing go here
+  end
+
+end

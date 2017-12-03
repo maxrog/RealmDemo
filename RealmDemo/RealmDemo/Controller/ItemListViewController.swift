@@ -21,7 +21,7 @@ class ItemListViewController: UIViewController {
             items = RealmQuery.items(withPriceLimit: priceLimit)
         }
     }
-    var items: [Item]? {
+    var items: [Item] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -81,16 +81,11 @@ extension ItemListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let items = items {
-            return items.count
-        } else {
-            return 0
-        }
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let itemCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell,
-        let items = items else { return UITableViewCell() }
+        guard let itemCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell else { return UITableViewCell() }
         
         itemCell.configure(with: items[indexPath.row])
         

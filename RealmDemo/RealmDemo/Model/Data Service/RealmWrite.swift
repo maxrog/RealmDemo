@@ -15,7 +15,8 @@ class RealmWrite {
     
     static func insert(item: Item) {
         do {
-            let realm = try Realm()
+            let realm = RealmProvider.realm()
+            print(realm.configuration.inMemoryIdentifier)
             try realm.write {
                 realm.add(item, update: true)
             }
@@ -28,7 +29,7 @@ class RealmWrite {
     
     static func update(item: Item, withName name: String, andPrice price: Int) {
         do {
-            let realm = try Realm()
+            let realm = RealmProvider.realm()
             try realm.write {
                 item.name = name
                 item.price = price

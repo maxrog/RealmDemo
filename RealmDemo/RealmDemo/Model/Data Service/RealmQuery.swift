@@ -13,28 +13,26 @@ class RealmQuery {
     
     // MARK: - Query items within price range
     
-    static func items(withPriceLimit limit: Int) -> [Item]? {
-        do {
-            let realm = try Realm()
-            let validItems = realm.objects(Item.self).filter("price <= \(limit)")
-            
-            return Array(validItems)
-        } catch let error {
-            print("Query for items failed", error)
-        }
-        return nil
+    static func items(withPriceLimit limit: Int) -> [Item] {
+        let realm = RealmProvider.realm()
+        let validItems = realm.objects(Item.self).filter("price <= \(limit)")
+        
+        return Array(validItems)
     }
     
     // MARK: - Query item with specific ID
     
     static func item(withID id: String) -> Item? {
-        do {
-            let realm = try Realm()
-            return realm.object(ofType: Item.self, forPrimaryKey: id)
-        } catch let error {
-            print("Query for item with id failed", error)
-        }
-        return nil
+        let realm = RealmProvider.realm()
+        return realm.object(ofType: Item.self, forPrimaryKey: id)
+    }
+    
+    // MARK: - Query all items
+    
+    static func allItems() -> [Item] {
+        let realm = RealmProvider.realm()
+        let items = realm.objects(Item.self)
+        return Array(items)
     }
     
     

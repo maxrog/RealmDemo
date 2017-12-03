@@ -15,7 +15,7 @@ class RealmRemove {
     
     static func delete(item: Item) {
         do {
-            let realm = try Realm()
+            let realm = RealmProvider.realm()
             try realm.write {
                 realm.delete(item)
             }
@@ -28,7 +28,7 @@ class RealmRemove {
     
     static func deleteAllItems() {
         do {
-            let realm = try Realm()
+            let realm = RealmProvider.realm()
             try realm.write {
                 realm.delete(realm.objects(Item.self))
             }
@@ -41,7 +41,7 @@ class RealmRemove {
     
     static func clearRealmDatabase() {
         do {
-            let realm = try Realm()
+            let realm = RealmProvider.realm()
             try realm.write {
                 realm.deleteAll()
             }

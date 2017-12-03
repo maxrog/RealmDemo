@@ -15,30 +15,43 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var itemNameTextField: UITextField!
     @IBOutlet weak var itemPriceTextField: UITextField!
     
-    var item: Item?
+    var itemToEdit: Item?
     
     // MARK: Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let item = item {
+        itemNameTextField.delegate = self
+        
+        if let item = itemToEdit {
             itemNameTextField.text = item.name
             itemPriceTextField.text = "\(item.price)"
         }
     }
     
-    // MARK: IBActions
+    // MARK: Actions
     
     @IBAction func addItem(_ sender: UIButton) {
         guard let name = itemNameTextField.text,
             let priceString = itemPriceTextField.text,
             let price = Int(priceString) else { return }
         
-        let item = Item(name: name, price: price)
-        RealmWrite.insert(item: item)
+        // Existing item to update
+        if let editedItem = itemToEdit {
+            RealmWrite.update(item: editedItem, withName: name, andPrice: price)
+        } else {
+            // New item to add
+            let item = Item(name: name, price: price)
+            RealmWrite.insert(item: item)
+        }
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
     
 }
@@ -47,8 +60,9 @@ class ItemDetailViewController: UIViewController {
 
 extension ItemDetailViewController: UITextFieldDelegate {
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.resignFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        itemNameTextField.resignFirstResponder()
+        return true
     }
     
 }

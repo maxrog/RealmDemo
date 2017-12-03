@@ -15,7 +15,7 @@ class ItemListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var priceLimitLabel: UILabel!
     
-    var priceLimit = 1 {
+    var priceLimit = 5 {
         didSet {
             priceLimitLabel.text = "$\(priceLimit)"
             items = RealmQuery.items(withPriceLimit: priceLimit)
@@ -35,6 +35,10 @@ class ItemListViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        items = RealmQuery.items(withPriceLimit: priceLimit)
     }
     
     // MARK: - IBActions
@@ -62,7 +66,7 @@ class ItemListViewController: UIViewController {
         } else {
             guard let item = itemToPass else { return }
             detailVC.title = "ID: \(item.id)"
-            detailVC.item = itemToPass
+            detailVC.itemToEdit = itemToPass
         }
     }
     

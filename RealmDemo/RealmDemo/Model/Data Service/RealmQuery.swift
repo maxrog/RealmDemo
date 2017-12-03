@@ -16,7 +16,7 @@ class RealmQuery {
     static func items(withPriceLimit limit: Int) -> [Item]? {
         do {
             let realm = try Realm()
-            let validItems = realm.objects(Item.self).filter("price < \(limit)")
+            let validItems = realm.objects(Item.self).filter("price <= \(limit)")
             
             return Array(validItems)
         } catch let error {

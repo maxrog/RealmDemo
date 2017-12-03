@@ -11,7 +11,7 @@ import RealmSwift
 
 class RealmWrite {
     
-    // MARK: - Insert a new item or update an existing one
+    // MARK: - Insert a new item
     
     static func insert(item: Item) {
         do {
@@ -21,6 +21,21 @@ class RealmWrite {
             }
         } catch let error {
             print("Write transaction for item failed", error)
+        }
+    }
+    
+    // MARK: - Update an existing itme
+    
+    static func update(item: Item, withName name: String, andPrice price: Int) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                item.name = name
+                item.price = price
+                realm.add(item, update: true)
+            }
+        } catch let error {
+            print("Write transaction for update item failed", error)
         }
     }
     

@@ -79,8 +79,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vsa-pv-Fj9">
                                 <rect key="frame" x="0.0" y="445" width="375" height="222"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price Limit To Display" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-kF-nYm">
-                                        <rect key="frame" x="67" y="50" width="241" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items Price Limit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDF-kF-nYm">
+                                        <rect key="frame" x="93.5" y="50" width="188" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="bQO-gm-XKa"/>
                                         </constraints>
@@ -89,7 +89,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbf-81-q7k">
-                                        <rect key="frame" x="262" y="95" width="46" height="40"/>
+                                        <rect key="frame" x="235.5" y="95" width="46" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="Nch-5A-3Xj"/>
@@ -104,7 +104,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-f7-2no">
-                                        <rect key="frame" x="67" y="95" width="46" height="40"/>
+                                        <rect key="frame" x="93.5" y="95" width="46" height="40"/>
                                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="qAT-on-5bR"/>
@@ -175,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="716" y="856.82158920539734"/>
         </scene>
-        <!--View Controller-->
+        <!--Item Detail View Controller-->
         <scene sceneID="DMs-Gp-NiB">
             <objects>
-                <viewController id="Z9f-Hr-SEl" sceneMemberID="viewController">
+                <viewController id="Z9f-Hr-SEl" customClass="ItemDetailViewController" customModule="RealmDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RIL-PD-Us8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -215,6 +215,9 @@
                                 <state key="normal" title="Add Item">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addItem:" destination="Z9f-Hr-SEl" eventType="touchUpInside" id="Lwc-X5-YCJ"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-Af-l2D">
                                 <rect key="frame" x="41" y="325" width="218" height="40"/>
@@ -243,6 +246,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Flz-OR-hOf"/>
                     </view>
+                    <connections>
+                        <outlet property="itemNameTextField" destination="imp-8U-a0J" id="o3g-HE-P4O"/>
+                        <outlet property="itemPriceTextField" destination="D8i-Af-l2D" id="8yB-DR-vWv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VmV-RG-zyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

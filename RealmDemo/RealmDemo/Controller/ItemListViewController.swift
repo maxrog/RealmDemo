@@ -18,16 +18,17 @@ class ItemListViewController: UIViewController {
     var priceLimit = 1 {
         didSet {
             priceLimitLabel.text = "$\(priceLimit)"
-            // TODO: - query realm with limit and set items value
-            // itmes = realmquery.getItems(withLimit: priceLimit)
+            items = RealmQuery.items(withPriceLimit: priceLimit)
         }
     }
-    var items: [Item] = [] {
+    var items: [Item]? {
         didSet {
             tableView.reloadData()
         }
     }
     var itemToPass: Item?
+    
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,19 +52,20 @@ class ItemListViewController: UIViewController {
         isEditing = !isEditing
     }
     
-    
     // MARK: - Prepare for segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? ItemDetailViewController else { return }
+        
         if segue.identifier == "addItem" {
-            navigationItem.title = "Create Item"
+            detailVC.title = "Create Item"
         } else {
             guard let item = itemToPass else { return }
-            navigationItem.title = "ID: \(item.id)"
+            detailVC.title = "ID: \(item.id)"
+            detailVC.item = itemToPass
         }
     }
     
-
 }
 
 // MARK: - Tableview datasource & delegate
@@ -75,11 +77,20 @@ extension ItemListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if let items = items {
+            return items.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let itemCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? ItemTableViewCell,
+        let items = items else { return UITableViewCell() }
+        
+        itemCell.configure(with: items[indexPath.row])
+        
+        return itemCell
     }
     
 }
@@ -94,10 +105,10 @@ extension ItemListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            //TODO: Remove from Realm & reload tableview
             guard let itemCell = tableView.cellForRow(at: indexPath) as? ItemTableViewCell,
                 let item = itemCell.model else { return }
-            
+            RealmRemove.delete(item: item)
+            items = RealmQuery.items(withPriceLimit: priceLimit)
         }
     }
 

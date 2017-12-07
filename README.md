@@ -1,8 +1,8 @@
 # RealmDemo
 This is a simple iOS application to demonstrate how to set up a Realm mobile database and use basic insert, query, and delete functions. It also shows how to create a mock Realm database for unit testing.
 
-## Steps to setup CocoaPods
-Terminal Command
+## Steps to setup RealmSwift CocoaPods
+Terminal Command (if haven't used CocoaPods before)
 ```
 sudo gem install cocoapods
 ```
@@ -13,7 +13,7 @@ Terminal Command
 pod init
 ```
 
-### Edit podfile
+### Edit Podfile
 ```
 platform :ios, '10.0'
 

@@ -16,7 +16,6 @@ class RealmWrite {
     static func insert(item: Item) {
         do {
             let realm = RealmProvider.realm()
-            print(realm.configuration.inMemoryIdentifier)
             try realm.write {
                 realm.add(item, update: true)
             }

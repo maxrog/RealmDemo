@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1BF213B63A75EADDCF83A6F2 /* Pods_RealmDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15F5A1188118DAF188522960 /* Pods_RealmDemo.framework */; };
+		342739421FD987E300FB1AE0 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342739411FD987E300FB1AE0 /* Migration.swift */; };
 		34A2460C1FD23CDE00273354 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A2460B1FD23CDE00273354 /* AppDelegate.swift */; };
 		34A246111FD23CDE00273354 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A2460F1FD23CDE00273354 /* Main.storyboard */; };
 		34A246131FD23CDE00273354 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34A246121FD23CDE00273354 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		15F5A1188118DAF188522960 /* Pods_RealmDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealmDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FB8A17F44E4E0260E4B0AD7 /* Pods-RealmDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RealmDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-RealmDemo/Pods-RealmDemo.release.xcconfig"; sourceTree = "<group>"; };
+		342739411FD987E300FB1AE0 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
 		34A246081FD23CDE00273354 /* RealmDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealmDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34A2460B1FD23CDE00273354 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34A246101FD23CDE00273354 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				34A246391FD3784C00273354 /* Data Service */,
 				34A246331FD2FC7700273354 /* Item.swift */,
+				342739411FD987E300FB1AE0 /* Migration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				34A246411FD37C6100273354 /* ItemDetailViewController.swift in Sources */,
 				34A2463B1FD3786500273354 /* RealmWrite.swift in Sources */,
 				34A246321FD2FC6200273354 /* ItemTableViewCell.swift in Sources */,
+				342739421FD987E300FB1AE0 /* Migration.swift in Sources */,
 				34A2460C1FD23CDE00273354 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

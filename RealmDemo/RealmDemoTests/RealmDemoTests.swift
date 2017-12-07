@@ -80,6 +80,6 @@ class RealmDemoTests: XCTestCase {
         XCTAssertEqual(queriedItem.price, 444)
         
     }
-    
+     
     
 }
